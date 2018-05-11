@@ -1,0 +1,4 @@
+name: BungeeLocationBan
+main: ldcr.bungee.LocationBan.LocationBan
+version: 1.0
+author: Ldcr
