@@ -13,10 +13,6 @@ public class LocationBanCommand extends Command {
 
 	@Override
 	public void execute(final CommandSender sender, final String[] args) {
-		if (!sender.hasPermission("LocationBan.admin")) {
-			sender.sendMessage(new TextComponent("§a§lLocationBan §7>> §c你没有权限执行此命令!"));
-			return;
-		}
 		if (args.length==0) {
 			sender.sendMessage(new TextComponent("§e/locationban info <玩家>                查询玩家上次登录信息及归属地"));
 			sender.sendMessage(new TextComponent("§e/locationban ban <原因> <归属地关键字>  封禁IP归属地"));
@@ -26,6 +22,10 @@ public class LocationBanCommand extends Command {
 		}
 		switch (args[0].toLowerCase()) {
 		case "reload": {
+			if (!sender.hasPermission("LocationBan.admin")) {
+				sender.sendMessage(new TextComponent("§a§lLocationBan §7>> §c你没有权限执行此命令!"));
+				return;
+			}
 			if (!LocationBan.instance.reload()) {
 				sender.sendMessage(new TextComponent("§a§lLocationBan §7>> §b重载失败"));
 				return;
@@ -34,6 +34,10 @@ public class LocationBanCommand extends Command {
 			return;
 		}
 		case "info": {
+			if (!sender.hasPermission("LocationBan.info")) {
+				sender.sendMessage(new TextComponent("§a§lLocationBan §7>> §c你没有权限执行此命令!"));
+				return;
+			}
 			if (args.length<2) {
 				sender.sendMessage(new TextComponent("§a§lLocationBan §7>> §e/locationban info <玩家>                查询玩家上次登录信息及归属地"));
 				return;
@@ -54,6 +58,10 @@ public class LocationBanCommand extends Command {
 			return;
 		}
 		case "ip": {
+			if (!sender.hasPermission("LocationBan.info")) {
+				sender.sendMessage(new TextComponent("§a§lLocationBan §7>> §c你没有权限执行此命令!"));
+				return;
+			}
 			final String ip = args[1];
 			String location;
 			try {
@@ -66,6 +74,10 @@ public class LocationBanCommand extends Command {
 			return;
 		}
 		case "ban": {
+			if (!sender.hasPermission("LocationBan.admin")) {
+				sender.sendMessage(new TextComponent("§a§lLocationBan §7>> §c你没有权限执行此命令!"));
+				return;
+			}
 			if (args.length<3) {
 				sender.sendMessage(new TextComponent("§a§lLocationBan §7>> §e/locationban ban <原因> <归属地关键字>  封禁IP归属地"));
 				return;
@@ -93,6 +105,10 @@ public class LocationBanCommand extends Command {
 			return;
 		}
 		case "unban": {
+			if (!sender.hasPermission("LocationBan.admin")) {
+				sender.sendMessage(new TextComponent("§a§lLocationBan §7>> §c你没有权限执行此命令!"));
+				return;
+			}
 			if (args.length<2) {
 				sender.sendMessage(new TextComponent("§a§lLocationBan §7>> §e/locationban unban <归属地关键字>       解封IP归属地"));
 				return;
@@ -119,6 +135,10 @@ public class LocationBanCommand extends Command {
 			}
 		}
 		case "list": {
+			if (!sender.hasPermission("LocationBan.info")) {
+				sender.sendMessage(new TextComponent("§a§lLocationBan §7>> §c你没有权限执行此命令!"));
+				return;
+			}
 			sender.sendMessage(new TextComponent("§a§lLocationBan §7>> §a所有被封禁的归属地: "));
 			for (final LocationBanEntry entry : LocationBan.instance.database.getAllBanned()) {
 				sender.sendMessage(new TextComponent("§e[ §c"+entry.getKeyword()+" §e] §a"+entry.getReason()+" §eBy §b"+entry.getExecutor()));
