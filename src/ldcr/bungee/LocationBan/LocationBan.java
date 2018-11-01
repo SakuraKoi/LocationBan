@@ -106,7 +106,7 @@ public class LocationBan extends Plugin
 		}
 		mysqlServer = this.config.getString("mysql.server","localhost");
 		mysqlPort = this.config.getString("mysql.port","3306");
-		mysqlDatabase = this.config.getString("mysql.database","luckyprefix");
+		mysqlDatabase = this.config.getString("mysql.database","locationban");
 		mysqlUser = this.config.getString("mysql.user","root");
 		mysqlPassword = this.config.getString("mysql.password","password");
 		bannedBroadcast = this.config.getString("bannedBroadcast","&b&lFS Clan Network &7>> &c归属地 &e%location% &c被管理员 &a%player% &c封禁: &e%reason%").replace('&', '§').replace("§§", "&");
